@@ -1,0 +1,6 @@
+domain: dfy.io
+layout:
+- go.kubebuilder.io/v3
+projectName: kubebuilder-zero-to-one
+repo: github.com/oceanweave/kubebuilder-zero-to-one
+version: "3"
