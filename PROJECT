@@ -3,4 +3,14 @@ layout:
 - go.kubebuilder.io/v3
 projectName: kubebuilder-zero-to-one
 repo: github.com/oceanweave/kubebuilder-zero-to-one
+resources:
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: dfy.io
+  group: myapp
+  kind: Redis
+  path: github.com/oceanweave/kubebuilder-zero-to-one/api/v1
+  version: v1
 version: "3"
