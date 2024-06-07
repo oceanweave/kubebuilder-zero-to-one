@@ -11,4 +11,4 @@ metadata:
 spec:
   # TODO(user): Add fields here
   replicas: 1
-  port: 3333
+  port: 333
