@@ -36,8 +36,6 @@ spec:
             description: RedisSpec defines the desired state of Redis
             properties:
               port:
-                description: 利用注释实现字段约束 参考 https://book.kubebuilder.io/reference/markers/crd-validation.html
-                  重新编译，安装crd  make install， 之后创建的 Port 值不在此范围将报错
                 format: int32
                 maximum: 54321
                 minimum: 1234

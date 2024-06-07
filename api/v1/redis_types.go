@@ -36,6 +36,7 @@ type RedisSpec struct {
 	// 利用注释实现字段约束 参考 https://book.kubebuilder.io/reference/markers/crd-validation.html
 	// 重新编译，安装crd  make install， 之后创建的 Port 值不在此范围将报错
 	// 举例：  config/samples/myapp_v1_redis.yaml 更改此文件端口为 333
+
 	//+kubebuilder:validation:Minimum:=1234
 	//+kubebuilder:validation:Maximum:=54321
 	Port int32 `json:"port,omitempty"`
