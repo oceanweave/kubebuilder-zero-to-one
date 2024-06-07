@@ -18,6 +18,7 @@ package controllers
 
 import (
 	"context"
+	"fmt"
 
 	"k8s.io/apimachinery/pkg/runtime"
 	ctrl "sigs.k8s.io/controller-runtime"
@@ -46,10 +47,20 @@ type RedisReconciler struct {
 //
 // For more details, check Reconcile and its Result here:
 // - https://pkg.go.dev/sigs.k8s.io/controller-runtime@v0.13.0/pkg/reconcile
+// 传统 controller 需要创建 Informer，注册 add delete update 的 handler，handle 会处理事件将其放入我们创建的 workqueue 中，之后我们在 从 workqueue 逐个取出进行业务逻辑处理
+// kubebuilder 会自动关注我们创建的 crd，crd 创建的 cr 的 add delete update 都可以从 req 中捕获到，之后进行业务逻辑处理，感觉是封装了 Informer 和 workqueue
 func (r *RedisReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.Result, error) {
 	_ = log.FromContext(ctx)
 
 	// TODO(user): your logic here
+
+	redis := myappv1.Redis{}
+	err := r.Get(ctx, req.NamespacedName, &redis)
+	if err != nil {
+		return ctrl.Result{}, err
+	}
+
+	fmt.Println("得到 crd redis 对象：", redis)
 
 	return ctrl.Result{}, nil
 }
