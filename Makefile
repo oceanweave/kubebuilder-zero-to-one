@@ -1,6 +1,6 @@
 
 # Image URL to use all building/pushing image targets
-IMG ?= controller:latest
+IMG ?= mycrd-redis-controller:latest
 # ENVTEST_K8S_VERSION refers to the version of kubebuilder assets to be downloaded by envtest binary.
 ENVTEST_K8S_VERSION = 1.25.0
 
@@ -74,6 +74,14 @@ run: manifests generate fmt vet ## Run a controller from your host.
 .PHONY: docker-build
 docker-build: test ## Build docker image with the manager.
 	docker build -t ${IMG} .
+
+.PHONY: docker-build-arm64
+docker-build-arm64: test ## Build docker image with the manager.
+	docker build --platform linux/arm64 -t ${IMG} .
+
+.PHONY: docker-build-amd64
+docker-build-amd64: test ## Build docker image with the manager.
+	docker build --platform linux/amd64 -t ${IMG} .
 
 .PHONY: docker-push
 docker-push: ## Push docker image with the manager.

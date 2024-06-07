@@ -70,7 +70,9 @@ spec:
         - /manager
         args:
         - --leader-elect
-        image: controller:latest
+        image: mycrd-redis-controller:latest
+        # 由于本地开发， 并不准备上传到云上， 所以设置为 IfNotPresent
+        imagePullPolicy: IfNotPresent
         name: manager
         securityContext:
           allowPrivilegeEscalation: false
